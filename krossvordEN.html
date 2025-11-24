@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Christmas Crossword</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f9ff;
+      text-align: center;
+      padding: 20px;
+      color: #222;
+    }
+
+    h1 {
+      color: #d42426;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .crossword-container {
+      display: inline-block;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin: 20px auto;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      background: #fff;
+    }
+
+    .cell.black {
+      background: #333;
+    }
+
+    .words-list {
+      max-width: 600px;
+      margin: 25px auto;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .words-list h2 {
+      color: #2c5aa0;
+    }
+
+    .word-item {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎄 Christmas Crossword Puzzle</h1>
+
+  <div class="crossword-container" id="crossword"></div>
+
+  <div class="words-list">
+    <h2>Words to find:</h2>
+    <div class="word-item">1. <strong>tree</strong> — Holiday symbol</div>
+    <div class="word-item">2. <strong>gift</strong> — Present under the tree</div>
+    <div class="word-item">3. <strong>christmas</strong> — December 25th celebration</div>
+    <div class="word-item">4. <strong>tinsel</strong> — Shiny decoration</div>
+    <div class="word-item">5. <strong>candle</strong> — Light for the season</div>
+  </div>
+
+  <script>
+    // Размер сетки: 11 колонок × 10 строк
+    const cols = 11;
+    const rows = 10;
+    let grid = Array(rows).fill(null).map(() => Array(cols).fill(''));
+
+    // Слова и их расположение (x, y, направление: 'h' или 'v')
+    const words = [
+      { word: "TREE",       x: 4, y: 0, dir: 'v' },      // по вертикали
+      { word: "GIFT",       x: 4, y: 0, dir: 'h' },      // по горизонтали — пересекается с TREE в 'T'
+      { word: "CHRISTMAS",  x: 0, y: 2, dir: 'h' },      // по горизонтали
+      { word: "TINSEL",     x: 2, y: 4, dir: 'v' },      // по вертикали
+      { word: "CANDLE",     x: 5, y: 4, dir: 'v' }       // по вертикали
+    ];
+
+    // Заполняем сетку буквами
+    words.forEach(w => {
+      const letters = w.word.split('');
+      if (w.dir === 'h') {
+        for (let i = 0; i < letters.length; i++) {
+          if (w.y < rows && w.x + i < cols) {
+            if (grid[w.y][w.x + i] === '') {
+              grid[w.y][w.x + i] = letters[i];
+            }
+          }
+        }
+      } else if (w.dir === 'v') {
+        for (let i = 0; i < letters.length; i++) {
+          if (w.y + i < rows && w.x < cols) {
+            if (grid[w.y + i][w.x] === '') {
+              grid[w.y + i][w.x] = letters[i];
+            }
+          }
+        }
+      }
+    });
+
+    // Формируем HTML
+    const container = document.getElementById('crossword');
+    for (let y = 0; y < rows; y++) {
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'row';
+      for (let x = 0; x < cols; x++) {
+        const cell = document.createElement('div');
+        if (grid[y][x] === '') {
+          cell.className = 'cell black';
+        } else {
+          cell.className = 'cell';
+          cell.textContent = grid[y][x];
+        }
+        rowDiv.appendChild(cell);
+      }
+      container.appendChild(rowDiv);
+    }
+  </script>
+</body>
+</html>
