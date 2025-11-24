@@ -1,94 +1,132 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Новогодний кроссворд</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #f5f5f5);
+      text-align: center;
       padding: 20px;
+      color: #222;
     }
     h1 {
-      text-align: center;
       color: #d32f2f;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .crossword-container {
+      display: inline-block;
+      margin: 20px auto;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
     .crossword {
-      display: grid;
-      grid-template-columns: repeat(10, 40px);
-      grid-gap: 1px;
-      margin: 0 auto 30px auto;
-      width: fit-content;
+      border-collapse: collapse;
     }
-    .cell {
-      width: 40px;
-      height: 40px;
-      background-color: white;
+    .crossword td {
+      width: 36px;
+      height: 36px;
       border: 1px solid #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
+      vertical-align: middle;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
+      background-color: #fff;
+      color: #000;
     }
     .black {
-      background-color: #333;
+      background-color: #000;
     }
-    .clues {
+    .legend {
       max-width: 600px;
-      margin: 0 auto;
+      margin: 20px auto;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
     }
-    .clue {
-      margin-bottom: 8px;
+    .legend h2 {
+      color: #0277bd;
+      margin-top: 0;
     }
-    .number {
-      font-weight: bold;
-      color: #d32f2f;
+    .legend ul {
+      padding-left: 20px;
+      margin-bottom: 5px;
+    }
+    .legend li {
+      margin-bottom: 6px;
     }
   </style>
 </head>
 <body>
-  <h1>Новогодний кроссворд</h1>
+  <h1>✨ Новогодний кроссворд ✨</h1>
 
-  <div class="crossword" id="crossword-grid">
-    <!-- Сетка 10x10 -->
-    <!-- Каждая ячейка: либо буква, либо черная (class="black") -->
-    <!-- Строка 1 -->
-    <div class="cell">Д</div><div class="cell">Е</div><div class="cell">Д</div><div class="cell">М</div><div class="cell">О</div><div class="cell">Р</div><div class="cell">О</div><div class="cell">З</div><div class="cell black"></div><div class="cell black"></div>
-    <!-- Строка 2 -->
-    <div class="cell">С</div><div class="cell black"></div><div class="cell">Л</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">С</div><div class="cell">Ч</div><div class="cell">А</div><div class="cell">С</div>
-    <!-- Строка 3 -->
-    <div class="cell">Н</div><div class="cell black"></div><div class="cell">О</div><div class="cell black"></div><div class="cell">Е</div><div class="cell">Л</div><div class="cell">К</div><div class="cell">А</div><div class="cell">Т</div><div class="cell">В</div>
-    <!-- Строка 4 -->
-    <div class="cell">Е</div><div class="cell black"></div><div class="cell">Х</div><div class="cell black"></div><div class="cell">М</div><div class="cell black"></div><div class="cell black"></div><div class="cell">Ь</div><div class="cell">О</div><div class="cell">О</div>
-    <!-- Строка 5 -->
-    <div class="cell">Г</div><div class="cell">Р</div><div class="cell">Я</div><div class="cell">З</div><div class="cell">Ь</div><div class="cell black"></div><div class="cell black"></div><div class="cell">С</div><div class="cell">Т</div><div class="cell">Д</div>
-    <!-- Строка 6 -->
-    <div class="cell">К</div><div class="cell black"></div><div class="cell">О</div><div class="cell black"></div><div class="cell">Я</div><div class="cell">С</div><div class="cell">Е</div><div class="cell">М</div><div class="cell">Ь</div><div class="cell">Е</div>
-    <!-- Строка 7 -->
-    <div class="cell">Р</div><div class="cell black"></div><div class="cell">Л</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">Н</div><div class="cell">Е</div><div class="cell">Г</div><div class="cell">С</div>
-    <!-- Строка 8 -->
-    <div class="cell">А</div><div class="cell">С</div><div class="cell">Н</div><div class="cell">Е</div><div class="cell">Г</div><div class="cell black"></div><div class="cell">К</div><div class="cell black"></div><div class="cell black"></div><div class="cell">Н</div>
-    <!-- Строка 9 -->
-    <div class="cell">С</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">Р</div><div class="cell black"></div><div class="cell black"></div><div class="cell">И</div>
-    <!-- Строка 10 -->
-    <div class="cell">З</div><div class="cell">У</div><div class="cell">Л</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">А</div><div class="cell">С</div><div class="cell">С</div><div class="cell">Й</div>
+  <!-- Кроссворд 11×11 -->
+  <div class="crossword-container">
+    <table class="crossword">
+      <tr>
+        <td class="black"></td><td>С</td><td>Н</td><td>Е</td><td>Г</td><td>У</td><td>Р</td><td>О</td><td>Ч</td><td>К</td><td>А</td>
+      </tr>
+      <tr>
+        <td>Е</td><td></td><td></td><td></td><td>Г</td><td></td><td></td><td></td><td></td><td></td><td class="black"></td>
+      </tr>
+      <tr>
+        <td>Л</td><td class="black"></td><td class="black"></td><td class="black"></td><td>О</td><td>В</td><td>И</td><td>К</td><td class="black"></td><td class="black"></td><td>Ш</td>
+      </tr>
+      <tr>
+        <td>К</td><td class="black"></td><td>М</td><td>О</td><td>Р</td><td>О</td><td>З</td><td class="black"></td><td class="black"></td><td class="black"></td><td>А</td>
+      </tr>
+      <tr>
+        <td>А</td><td class="black"></td><td>А</td><td></td><td></td><td></td><td></td><td class="black"></td><td>О</td><td>Л</td><td>М</td>
+      </tr>
+      <tr>
+        <td class="black"></td><td>С</td><td>Н</td><td>Е</td><td>Ж</td><td>И</td><td>Н</td><td>К</td><td>А</td><td>И</td><td>П</td>
+      </tr>
+      <tr>
+        <td class="black"></td><td>Н</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>В</td><td>А</td>
+      </tr>
+      <tr>
+        <td class="black"></td><td>Е</td><td class="black"></td><td class="black"></td><td>З</td><td>В</td><td>Е</td><td>З</td><td>Д</td><td>А</td><td>Н</td>
+      </tr>
+      <tr>
+        <td class="black"></td><td>Г</td><td class="black"></td><td class="black"></td><td>В</td><td></td><td></td><td></td><td></td><td></td><td>С</td>
+      </tr>
+      <tr>
+        <td class="black"></td><td>О</td><td class="black"></td><td>Ш</td><td>А</td><td>Р</td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td>К</td>
+      </tr>
+      <tr>
+        <td class="black"></td><td>В</td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td>О</td>
+      </tr>
+    </table>
   </div>
 
-  <div class="clues">
-    <h2>Вопросы по горизонтали:</h2>
-    <div class="clue"><span class="number">1.</span> Главный зимний волшебник (9 букв)</div>
-    <div class="clue"><span class="number">4.</span> Название месяца в календаре эвенков (3 буквы)</div>
-    <div class="clue"><span class="number">5.</span> Погодное ощущение зимой (5 букв)</div>
-    <div class="clue"><span class="number">6.</span> Древнее загрязнение улиц в оттепель (5 букв)</div>
-    <div class="clue"><span class="number">7.</span> Цвет, символизирующий Новый год и удачу (7 букв)</div>
-
-    <h2>Вопросы по вертикали:</h2>
-    <div class="clue"><span class="number">1.</span> Белое покрытие на земле (4 буквы)</div>
-    <div class="clue"><span class="number">2.</span> Дерево, главный символ Нового года (4 буквы)</div>
-    <div class="clue"><span class="number">3.</span> Период жизни, ассоциирующийся с ёлкой и подарками (7 букв)</div>
-    <div class="clue"><span class="number">4.</span> То, что объединяется за праздничным столом (5 букв)</div>
-    <div class="clue"><span class="number">8.</span> Эмоция, которую все хотят в Новый год (6 букв)</div>
+  <div class="legend">
+    <h2>Слова кроссворда:</h2>
+    <ul>
+      <li><strong>По горизонтали:</strong>
+        <ol>
+          <li><strong>1.</strong> Снегурочка</li>
+          <li><strong>3.</strong> Снеговик</li>
+          <li><strong>4.</strong> Мороз</li>
+          <li><strong>6.</strong> Снежинка</li>
+          <li><strong>8.</strong> Звезда</li>
+          <li><strong>10.</strong> Шар</li>
+        </ol>
+      </li>
+      <li><strong>По вертикали:</strong>
+        <ol>
+          <li><strong>1.</strong> Елка</li>
+          <li><strong>2.</strong> Снег</li>
+          <li><strong>5.</strong> Оливье</li>
+          <li><strong>7.</strong> Шампанское</li>
+        </ol>
+      </li>
+    </ul>
   </div>
 
 </body>
