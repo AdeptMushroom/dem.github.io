@@ -6,122 +6,90 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f8ff;
-      text-align: center;
+      background-color: #f0f8ff;
       padding: 20px;
     }
-
     h1 {
-      color: #d42426;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      text-align: center;
+      color: #d32f2f;
     }
-
     .crossword {
-      display: inline-block;
-      margin: 20px auto;
-      background: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-gap: 1px;
+      margin: 0 auto 30px auto;
+      width: fit-content;
     }
-
-    .row {
-      display: flex;
-    }
-
     .cell {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
+      background-color: white;
       border: 1px solid #333;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: 16px;
-      background-color: #f9f9f9;
+      font-size: 18px;
     }
-
-    .cell.black {
+    .black {
       background-color: #333;
     }
-
-    .cell.empty {
-      background-color: #eee;
+    .clues {
+      max-width: 600px;
+      margin: 0 auto;
     }
-
-    .words-list {
-      margin-top: 20px;
-      font-size: 16px;
-      line-height: 1.6;
+    .clue {
+      margin-bottom: 8px;
     }
-
-    .words-list h2 {
-      color: #2c5aa0;
+    .number {
+      font-weight: bold;
+      color: #d32f2f;
     }
   </style>
 </head>
 <body>
-  <h1>🎄 Новогодний кроссворд 🎁</h1>
+  <h1>Новогодний кроссворд</h1>
 
-  <div class="crossword" id="crossword"></div>
-
-  <div class="words-list">
-    <h2>Слова в кроссворде:</h2>
-    <p>По горизонтали: 1. Елка | 2. Оливье | 3. Снег | 4. Хлопушка | 5. Подарки | 6. Салют | 7. Праздник | 8. Куранты</p>
-    <p>По вертикали: 9. Снегурочка | 10. Мандарины</p>
+  <div class="crossword" id="crossword-grid">
+    <!-- Сетка 10x10 -->
+    <!-- Каждая ячейка: либо буква, либо черная (class="black") -->
+    <!-- Строка 1 -->
+    <div class="cell">Д</div><div class="cell">Е</div><div class="cell">Д</div><div class="cell">М</div><div class="cell">О</div><div class="cell">Р</div><div class="cell">О</div><div class="cell">З</div><div class="cell black"></div><div class="cell black"></div>
+    <!-- Строка 2 -->
+    <div class="cell">С</div><div class="cell black"></div><div class="cell">Л</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">С</div><div class="cell">Ч</div><div class="cell">А</div><div class="cell">С</div>
+    <!-- Строка 3 -->
+    <div class="cell">Н</div><div class="cell black"></div><div class="cell">О</div><div class="cell black"></div><div class="cell">Е</div><div class="cell">Л</div><div class="cell">К</div><div class="cell">А</div><div class="cell">Т</div><div class="cell">В</div>
+    <!-- Строка 4 -->
+    <div class="cell">Е</div><div class="cell black"></div><div class="cell">Х</div><div class="cell black"></div><div class="cell">М</div><div class="cell black"></div><div class="cell black"></div><div class="cell">Ь</div><div class="cell">О</div><div class="cell">О</div>
+    <!-- Строка 5 -->
+    <div class="cell">Г</div><div class="cell">Р</div><div class="cell">Я</div><div class="cell">З</div><div class="cell">Ь</div><div class="cell black"></div><div class="cell black"></div><div class="cell">С</div><div class="cell">Т</div><div class="cell">Д</div>
+    <!-- Строка 6 -->
+    <div class="cell">К</div><div class="cell black"></div><div class="cell">О</div><div class="cell black"></div><div class="cell">Я</div><div class="cell">С</div><div class="cell">Е</div><div class="cell">М</div><div class="cell">Ь</div><div class="cell">Е</div>
+    <!-- Строка 7 -->
+    <div class="cell">Р</div><div class="cell black"></div><div class="cell">Л</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">Н</div><div class="cell">Е</div><div class="cell">Г</div><div class="cell">С</div>
+    <!-- Строка 8 -->
+    <div class="cell">А</div><div class="cell">С</div><div class="cell">Н</div><div class="cell">Е</div><div class="cell">Г</div><div class="cell black"></div><div class="cell">К</div><div class="cell black"></div><div class="cell black"></div><div class="cell">Н</div>
+    <!-- Строка 9 -->
+    <div class="cell">С</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">Р</div><div class="cell black"></div><div class="cell black"></div><div class="cell">И</div>
+    <!-- Строка 10 -->
+    <div class="cell">З</div><div class="cell">У</div><div class="cell">Л</div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell">А</div><div class="cell">С</div><div class="cell">С</div><div class="cell">Й</div>
   </div>
 
-  <script>
-    // Сетка 12x12
-    const grid = Array(12).fill(null).map(() => Array(12).fill(''));
+  <div class="clues">
+    <h2>Вопросы по горизонтали:</h2>
+    <div class="clue"><span class="number">1.</span> Главный зимний волшебник (9 букв)</div>
+    <div class="clue"><span class="number">4.</span> Название месяца в календаре эвенков (3 буквы)</div>
+    <div class="clue"><span class="number">5.</span> Погодное ощущение зимой (5 букв)</div>
+    <div class="clue"><span class="number">6.</span> Древнее загрязнение улиц в оттепель (5 букв)</div>
+    <div class="clue"><span class="number">7.</span> Цвет, символизирующий Новый год и удачу (7 букв)</div>
 
-    // Заполняем слова (координаты и направление)
-    const words = [
-      { word: "ЕЛКА", x: 0, y: 0, dir: 'h' },
-      { word: "ОЛИВЬЕ", x: 3, y: 2, dir: 'h' },
-      { word: "СНЕГ", x: 7, y: 4, dir: 'h' },
-      { word: "ХЛОПУШКА", x: 0, y: 6, dir: 'h' },
-      { word: "ПОДАРКИ", x: 2, y: 8, dir: 'h' },
-      { word: "САЛЮТ", x: 6, y: 10, dir: 'h' },
-      { word: "ПРАЗДНИК", x: 1, y: 11, dir: 'v' },
-      { word: "КУРАНТЫ", x: 9, y: 3, dir: 'v' },
-      { word: "СНЕГУРОЧКА", x: 0, y: 0, dir: 'v' },
-      { word: "МАНДАРИНЫ", x: 5, y: 1, dir: 'v' }
-    ];
+    <h2>Вопросы по вертикали:</h2>
+    <div class="clue"><span class="number">1.</span> Белое покрытие на земле (4 буквы)</div>
+    <div class="clue"><span class="number">2.</span> Дерево, главный символ Нового года (4 буквы)</div>
+    <div class="clue"><span class="number">3.</span> Период жизни, ассоциирующийся с ёлкой и подарками (7 букв)</div>
+    <div class="clue"><span class="number">4.</span> То, что объединяется за праздничным столом (5 букв)</div>
+    <div class="clue"><span class="number">8.</span> Эмоция, которую все хотят в Новый год (6 букв)</div>
+  </div>
 
-    // Заполняем сетку
-    words.forEach(w => {
-      const chars = w.word.split('');
-      if (w.dir === 'h') {
-        for (let i = 0; i < chars.length; i++) {
-          if (grid[w.y][w.x + i] === '') grid[w.y][w.x + i] = chars[i];
-        }
-      } else {
-        for (let i = 0; i < chars.length; i++) {
-          if (grid[w.y + i][w.x] === '') grid[w.y + i][w.x] = chars[i];
-        }
-      }
-    });
-
-    // Создаём HTML-сетку
-    const crosswordEl = document.getElementById('crossword');
-    grid.forEach((row, y) => {
-      const rowEl = document.createElement('div');
-      rowEl.className = 'row';
-      row.forEach((cell, x) => {
-        const cellEl = document.createElement('div');
-        if (cell === '') {
-          cellEl.className = 'cell black';
-        } else if (cell === ' ') {
-          cellEl.className = 'cell empty';
-        } else {
-          cellEl.className = 'cell';
-          cellEl.textContent = cell;
-        }
-        rowEl.appendChild(cellEl);
-      });
-      crosswordEl.appendChild(rowEl);
-    });
-  </script>
 </body>
 </html>
