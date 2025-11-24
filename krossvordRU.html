@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Новогодний кроссворд</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d42426;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .crossword {
+      display: inline-block;
+      margin: 20px auto;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      background-color: #f9f9f9;
+    }
+
+    .cell.black {
+      background-color: #333;
+    }
+
+    .cell.empty {
+      background-color: #eee;
+    }
+
+    .words-list {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .words-list h2 {
+      color: #2c5aa0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎄 Новогодний кроссворд 🎁</h1>
+
+  <div class="crossword" id="crossword"></div>
+
+  <div class="words-list">
+    <h2>Слова в кроссворде:</h2>
+    <p>По горизонтали: 1. Елка | 2. Оливье | 3. Снег | 4. Хлопушка | 5. Подарки | 6. Салют | 7. Праздник | 8. Куранты</p>
+    <p>По вертикали: 9. Снегурочка | 10. Мандарины</p>
+  </div>
+
+  <script>
+    // Сетка 12x12
+    const grid = Array(12).fill(null).map(() => Array(12).fill(''));
+
+    // Заполняем слова (координаты и направление)
+    const words = [
+      { word: "ЕЛКА", x: 0, y: 0, dir: 'h' },
+      { word: "ОЛИВЬЕ", x: 3, y: 2, dir: 'h' },
+      { word: "СНЕГ", x: 7, y: 4, dir: 'h' },
+      { word: "ХЛОПУШКА", x: 0, y: 6, dir: 'h' },
+      { word: "ПОДАРКИ", x: 2, y: 8, dir: 'h' },
+      { word: "САЛЮТ", x: 6, y: 10, dir: 'h' },
+      { word: "ПРАЗДНИК", x: 1, y: 11, dir: 'v' },
+      { word: "КУРАНТЫ", x: 9, y: 3, dir: 'v' },
+      { word: "СНЕГУРОЧКА", x: 0, y: 0, dir: 'v' },
+      { word: "МАНДАРИНЫ", x: 5, y: 1, dir: 'v' }
+    ];
+
+    // Заполняем сетку
+    words.forEach(w => {
+      const chars = w.word.split('');
+      if (w.dir === 'h') {
+        for (let i = 0; i < chars.length; i++) {
+          if (grid[w.y][w.x + i] === '') grid[w.y][w.x + i] = chars[i];
+        }
+      } else {
+        for (let i = 0; i < chars.length; i++) {
+          if (grid[w.y + i][w.x] === '') grid[w.y + i][w.x] = chars[i];
+        }
+      }
+    });
+
+    // Создаём HTML-сетку
+    const crosswordEl = document.getElementById('crossword');
+    grid.forEach((row, y) => {
+      const rowEl = document.createElement('div');
+      rowEl.className = 'row';
+      row.forEach((cell, x) => {
+        const cellEl = document.createElement('div');
+        if (cell === '') {
+          cellEl.className = 'cell black';
+        } else if (cell === ' ') {
+          cellEl.className = 'cell empty';
+        } else {
+          cellEl.className = 'cell';
+          cellEl.textContent = cell;
+        }
+        rowEl.appendChild(cellEl);
+      });
+      crosswordEl.appendChild(rowEl);
+    });
+  </script>
+</body>
+</html>
