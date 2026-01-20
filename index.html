@@ -79,5 +79,13 @@
 # Decrypt C=32: M=32^5 mod 35 = 2
 
 
+
+
+
+  # RSA demo (2026-01-20) | p=5, q=11 → n=55, φ=40, e=3, d=27
+n, e, d = 55, 3, pow(3, -1, 40)
+print(f"Open key: ({n}, {e}) | Private key: ({n}, {d}) | Decrypted: {pow(pow(7, e, n), d, n)}")
+
+
     
   </html>
