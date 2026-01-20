@@ -55,11 +55,6 @@
   </p>
 
 
-      
-
-        
-    </body>
-
 
 
 
@@ -74,18 +69,13 @@
 
 
 <p><strong>Дата:</strong> 20 января 2026 г.</p>
-# RSA example: p=5,q=7 → n=35,φ=24, e=5,d=5. Public key (35,5), Private key (35,5)
-# Encrypt m=2: C=2^5 mod 35 = 32
-# Decrypt C=32: M=32^5 mod 35 = 2
+<pre id="rsa"></pre>
+  <script>
+    const [p,q,e,m]=[5,11,3,7],n=p*q,φ=(p-1)*(q-1),d=27,C=(m**e)%n,M=(C**d)%n;
+    const out=`Дата: 2026-01-20\nОткрытый ключ: (${n}, ${e})\nЗакрытый ключ: (${n}, ${d})`;
+    document.getElementById('rsa').textContent=out;
+  </script>
 
-
-
-
-
-  # RSA demo (2026-01-20) | p=5, q=11 → n=55, φ=40, e=3, d=27
-n, e, d = 55, 3, pow(3, -1, 40)
-print(f"Open key: ({n}, {e}) | Private key: ({n}, {d}) | Decrypted: {pow(pow(7, e, n), d, n)}")
-
-
+    </body>
     
   </html>
