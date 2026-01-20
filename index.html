@@ -69,13 +69,12 @@
 
 
 <p><strong>Дата:</strong> 20 января 2026 г.</p>
-<pre id="rsa"></pre>
-  <script>
-    const [p,q,e,m]=[5,11,3,7],n=p*q,φ=(p-1)*(q-1),d=27,C=(m**e)%n,M=(C**d)%n;
-    const out=`Дата: 2026-01-20\nОткрытый ключ: (${n}, ${e})\nЗакрытый ключ: (${n}, ${d})`;
-    document.getElementById('rsa').textContent=out;
-  </script>
+<p>Открытый ключ: (55, 3)</p>
+<p>Закрытый ключ: (55, 27)</p>
 
     </body>
     
   </html>
+
+
+
