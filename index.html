@@ -5,18 +5,42 @@
 
 
 
-<style>
-body{background:linear-gradient(135deg,#e0f7fa,#b3e5fc,#e1f5fe);color:#01579b;margin:0}
-.f{position:fixed;font-size:1.5rem;opacity:.3;animation:a 20s linear infinite;pointer-events:none}
-@keyframes a{0%{transform:translateY(110vh)rotate(0);opacity:0}10%,90%{opacity:.4}100%{transform:translateY(-10vh)rotate(360deg);opacity:0}}
-h2{position:relative;padding-bottom:20px}
-h2:after{content:"✨";position:absolute;bottom:2px;left:50%;transform:translateX(-50%);animation:b 1.5s ease infinite}
-@keyframes b{50%{transform:translateX(-50%)scale(1.3)}}
-</style>
-<span class=f style=left:10%>💖</span><span class=f style=left:35%;animation-delay:5s>⭐</span><span class=f style=left:60%;animation-delay:10s>💫</span><span class=f style=left:85%;animation-delay:15s>💖</span>
-
+<body style="background: linear-gradient(135deg, #e0f7fa, #7c4dff, #4a148c, #e0f7fa); background-size: 400% 400%; animation: bgShift 8s ease infinite; margin: 0; min-height: 100vh; overflow-x: hidden; position: relative; font-family: system-ui, sans-serif;">
+  <style>
+    @keyframes bgShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
     
-    <body>
+    .heart { position: absolute; top: -60px; animation: heartFall 6s linear infinite; opacity: 0.85; pointer-events: none; user-select: none; will-change: transform; }
+    @keyframes heartFall { to { transform: translateY(110vh) rotate(360deg); } }
+    
+    .h1{left:10%; animation-duration:5s; animation-delay:0s; font-size:24px}
+    .h2{left:25%; animation-duration:7s; animation-delay:1.2s; font-size:18px}
+    .h3{left:40%; animation-duration:6s; animation-delay:0.5s; font-size:24px}
+    .h4{left:55%; animation-duration:8s; animation-delay:2s; font-size:30px}
+    .h5{left:70%; animation-duration:5.5s; animation-delay:0.8s; font-size:24px}
+    .h6{left:85%; animation-duration:6.8s; animation-delay:1.5s; font-size:22px}
+    .h7{left:5%; animation-duration:7.2s; animation-delay:2.5s; font-size:24px}
+    .h8{left:95%; animation-duration:5.3s; animation-delay:0.3s; font-size:26px}
+
+    .glow-text {
+      background: linear-gradient(90deg, #e0f7fa, #4fc3f7, #81d4fa, #b3e5fc, #e0f7fa);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+      animation: shimmer 4s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(79, 195, 247, 0.6)) drop-shadow(0 0 28px rgba(2, 136, 209, 0.35));
+      font-weight: 700; letter-spacing: 1px;
+    }
+    @keyframes shimmer { to { background-position: 200% center; } }
+  </style>
+  
+  <span class="heart h1">❤️‍🔥</span><span class="heart h2">❤️‍🔥</span><span class="heart h3">❤️‍🔥</span><span class="heart h4">❤️‍🔥</span>
+  <span class="heart h5">❤️‍🔥</span><span class="heart h6">❤️‍🔥</span><span class="heart h7">❤️‍🔥</span><span class="heart h8">❤️‍🔥</span>
+
+  <!-- Твой заголовок -->
+  <h1 class="glow-text" style="text-align:center; margin-top:25vh; font-size: clamp(2rem, 6vw, 4rem);">ТВОЙ ЗАГОЛОВОК</h1>
+</body>
+
+
       
 
 
