@@ -5,12 +5,30 @@
 
 
 
-<body style="background: linear-gradient(135deg, #e1f5fe, #7c4dff, #2a004f, #e1f5fe); background-size: 400% 400%; animation: bodyBgShift 8s ease infinite; margin: 0; min-height: 100vh; overflow-x: hidden; position: relative; font-family: system-ui, sans-serif;">
+<body style="background: linear-gradient(135deg, #e1f5fe, #9c7cff, #6a5acd, #e1f5fe); background-size: 400% 400%; animation: bodyBgShift 8s ease infinite; margin: 0; min-height: 100vh; overflow-x: hidden; font-family: system-ui, sans-serif;">
   <style>
-    @keyframes bodyBgShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+    @keyframes bodyBgShift { 
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
     
-    .heart { position: absolute; top: -60px; animation: heartFall 6s linear infinite; opacity: 0.85; pointer-events: none; user-select: none; will-change: transform; }
-    @keyframes heartFall { to { transform: translateY(110vh) rotate(360deg); } }
+    /* ✅ ИЗМЕНЕНО: position: fixed вместо absolute */
+    .heart { 
+      position: fixed; /* было: absolute */
+      top: -60px; 
+      animation: heartFall 6s linear infinite; 
+      opacity: 0.85; 
+      pointer-events: none; 
+      user-select: none; 
+      will-change: transform;
+      z-index: 1; /* чтобы сердечки были поверх контента, но под текстом */
+    }
+    
+    @keyframes heartFall { 
+      to { 
+        transform: translateY(110vh) rotate(360deg); 
+      } 
+    }
     
     .h1{left:10%; animation-duration:5s; animation-delay:0s; font-size:24px}
     .h2{left:25%; animation-duration:7s; animation-delay:1.2s; font-size:18px}
@@ -19,34 +37,56 @@
     .h5{left:70%; animation-duration:5.5s; animation-delay:0.8s; font-size:24px}
     .h6{left:85%; animation-duration:6.8s; animation-delay:1.5s; font-size:22px}
     .h7{left:5%; animation-duration:7.2s; animation-delay:2.5s; font-size:24px}
-    .h8{left:95%; animation-duration:5.3s; animation-delay:0.3s; font-size:26px}
+    .h8{left:90%; animation-duration:5.3s; animation-delay:0.3s; font-size:26px} /* было: 95% */
 
     /* ✨ БЕЗОПАСНЫЙ СТИЛЬ ДЛЯ ТЕКСТА */
     .glow-text {
       background: linear-gradient(90deg, #e1f5fe, #4fc3f7, #81d4fa, #b3e5fc, #e1f5fe);
       background-size: 200% auto;
-      -webkit-background-clip: text; background-clip: text;
+      -webkit-background-clip: text; 
+      background-clip: text;
       color: transparent;
       animation: textGlowShift 4s linear infinite;
       filter: drop-shadow(0 0 10px rgba(79, 195, 247, 0.55));
-      font-weight: 700; letter-spacing: 1px;
-      transform: none !important; /* Жёстко отключает любое вращение */
+      font-weight: 700; 
+      letter-spacing: 1px;
+      transform: none !important;
       -webkit-transform: none !important;
+      position: relative;
+      z-index: 2; /* текст поверх сердечек */
     }
+    
     @keyframes textGlowShift { 
       0% { background-position: 0% center; }
       100% { background-position: 200% center; }
     }
+    
+    /* ♿ Accessibility: отключение анимации для пользователей */
+    @media (prefers-reduced-motion: reduce) {
+      body { animation: none !important; }
+      .heart { animation: none !important; opacity: 0.5; }
+      .glow-text { animation: none !important; }
+    }
   </style>
   
-  <span class="heart h1">❤️‍🔥</span><span class="heart h2">❤️‍🔥</span><span class="heart h3">❤️‍🔥</span><span class="heart h4">❤️‍🔥</span>
-  <span class="heart h5">❤️‍🔥</span><span class="heart h6">❤️‍🔥</span><span class="heart h7">❤️‍🔥</span><span class="heart h8">❤️‍🔥</span>
+  <span class="heart h1">❤️‍🔥</span>
+  <span class="heart h2">❤️‍🔥</span>
+  <span class="heart h3">❤️‍🔥</span>
+  <span class="heart h4">❤️‍🔥</span>
+  <span class="heart h5">❤️‍🔥</span>
+  <span class="heart h6">❤️‍🔥</span>
+  <span class="heart h7">❤️‍🔥</span>
+  <span class="heart h8">❤️‍🔥</span>
 
-  <!-- Твой заголовок. ВАЖНО: класс добавляй ТОЛЬКО к самому тегу текста, не к div/section -->
   <h1 class="glow-text" style="text-align:center; margin-top:25vh; font-size: clamp(2rem, 6vw, 4rem);">Мой блог</h1>
+  
+  <!-- Добавь сюда контент своего блога -->
+  <div style="padding: 2rem; position: relative; z-index: 2;">
+    <p style="color: white; font-size: 1.2rem; text-align: center;">
+      Теперь сердечки будут видны при скролле! 💖
+    </p>
+  </div>
 </body>
-
-
 
 
 
