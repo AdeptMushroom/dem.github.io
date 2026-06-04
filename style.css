@@ -1,25 +1,29 @@
+/* 1. Подключение шрифта (исправлены кавычки) */
 @font-face {
-	font-family: “Pudelinka”;
-	src: url(”Fonts/pudelinka.ttf” ) format('truetype’);
-	font-weight: normal;
-	font-style: normal;
+  font-family: "Pudelinka";
+  src: url("Fonts/pudelinka.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
-body{
-	background-color: #d2b48c;
-	margin-left: 20%;
-	margin-right: 20%;
-	border: 2px dotted black;
-	padding: 10px 10px 10px 10px;
-	font-family: sans serif;
-    }
+
+/* 2. Настройки страницы (исправлено центрирование) */
+body {
+  background-color: #d2b48c; /* Бежевый цвет */
+  margin: 0 auto; /* Автоматическое центрирование */
+  max-width: 800px; /* Максимальная ширина, чтобы на больших экранах не растягивалось */
+  min-height: 100vh; /* Фон на всю высоту экрана */
+  border: 2px dotted black;
+  padding: 30px;
+  font-family: "Pudelinka", "Georgia", sans-serif; /* Сначала Pudelinka, если нет - красивый стандартный */
+  box-sizing: border-box;
+}
+
+/* 3. Стиль для цитат */
 blockquote.q {
-color: #D4AF37;
-border-left: 4px solid #8B0000;
-font-style: italic;
-}
-@font-face {
-font-family: “Pudelinka”;
-src: url(”Fonts/pudelinka.ttf” ) format('truetype’);
-font-weight: normal;
-font-style: normal;
+  color: #D4AF37; /* Золотой цвет текста */
+  border-left: 4px solid #8B0000; /* Темно-красная линия слева */
+  font-style: italic;
+  padding-left: 15px; /* Отступ текста от линии */
+  margin: 20px 0;
+  font-size: 1.1rem;
 }
