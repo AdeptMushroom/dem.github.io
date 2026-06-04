@@ -9,8 +9,7 @@
 
 
 
-        /* Общие настройки страницы */
-    body {
+          body {
       margin: 0;
       padding: 40px 20px;
       min-height: 100vh;
@@ -21,12 +20,11 @@
       color: #c9d1d9;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.7;
-      max-width: 1000px; /* Широкий, но удобный для чтения контейнер */
+      max-width: 1100px; /* Делает текст широким и удобным */
       margin-left: auto;
       margin-right: auto;
     }
 
-    /* Главный заголовок */
     h1 {
       text-align: center;
       font-size: clamp(2rem, 5vw, 3.5rem);
@@ -36,7 +34,6 @@
       letter-spacing: -0.5px;
     }
 
-    /* Даты записей (h2) */
     h2 {
       font-size: 1.25rem;
       font-weight: 600;
@@ -47,14 +44,12 @@
       border-bottom: 1px solid #30363d;
     }
 
-    /* Основной текст */
     p {
       margin: 1rem 0;
       font-size: 1.05rem;
-      overflow-wrap: break-word; /* Защита от длинных строк кода/чисел */
+      overflow-wrap: break-word; /* Чтобы длинные двоичные коды не ломали экран */
     }
 
-    /* Обычные цитаты */
     blockquote {
       margin: 1.5rem 0;
       padding: 1rem 1.5rem;
@@ -65,7 +60,6 @@
       color: #8b949e;
     }
 
-    /* Особые цитаты с классом .q */
     blockquote.q {
       border-left-color: #d2a8ff;
       background: rgba(210, 168, 255, 0.05);
@@ -73,7 +67,6 @@
       font-weight: 500;
     }
 
-    /* Ссылки */
     a {
       color: #58a6ff;
       text-decoration: none;
@@ -87,7 +80,6 @@
       background: rgba(88, 166, 255, 0.1);
     }
 
-    /* Изображения */
     img {
       max-width: 100%;
       height: auto;
@@ -95,13 +87,6 @@
       border: 1px solid #30363d;
       margin: 1.5rem 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Адаптивность для телефонов */
-    @media (max-width: 600px) {
-      body { padding: 20px 15px; }
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.1rem; }
     }
 
 
