@@ -9,116 +9,150 @@
 
 
 
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f1419, #1a2332, #0f1419);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .container {
+      max-width: 1200px; /* Сделали шире, чтобы текст не сужался */
+      margin: 0 auto;
+      padding: 2rem 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem; /* На телефонах отступы меньше, чтобы было удобно */
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin: 0;
+      background: linear-gradient(90deg, #d4af37, #f4e5c2, #d4af37);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    .blog-post {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .blog-post:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .blog-post h2 {
+      color: #d4af37;
+      font-size: 1.5rem;
+      margin-top: 0;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .blog-post p {
+      line-height: 1.7;
+      color: #b0b0b0;
+      margin: 1rem 0;
+      word-wrap: break-word; /* Защита от вылезания длинных слов */
+    }
+
+    .blog-post a {
+      color: #f4e5c2;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244, 229, 194, 0.3);
+      transition: all 0.2s;
+    }
+
+    .blog-post a:hover {
+      color: #d4af37;
+      border-bottom-color: #d4af37;
+    }
+
+    blockquote.q {
+      border-left: 3px solid #d4af37;
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: #d4af37;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>Мой блог</h1>
+    </div>
 
 
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f1419, #1a2332, #0f1419);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-  font-family: system-ui, -apple-system, sans-serif;
-  color: #e0e0e0;
-  overflow-x: hidden;
-}
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
 
-.container {
-  max-width: 1200px; /* Было 900px, теперь шире */
-  margin: 0 auto;
-  padding: 2rem 3rem; /* Увеличил боковые отступы */
-}
 
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem; /* На телефонах меньше отступов */
-  }
-}
 
-.header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem;
-}
 
-h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 300;
-  letter-spacing: 3px;
-  margin: 0;
-  background: linear-gradient(90deg, #d4af37, #f4e5c2, #d4af37);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shine 3s linear infinite;
-}
 
-@keyframes shine {
-  to { background-position: 200% center; }
-}
 
-.blog-post {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 12px;
-  padding: 2rem 2.5rem; /* Чуть больше внутренних отступов */
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
-}
 
-.blog-post:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(212, 175, 55, 0.4);
-  transform: translateY(-2px);
-}
 
-.blog-post h2 {
-  color: #d4af37;
-  font-size: 1.5rem;
-  margin-top: 0;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
 
-.blog-post p {
-  line-height: 1.7;
-  color: #b0b0b0;
-  margin: 1rem 0;
-  word-wrap: break-word; /* Чтобы длинные слова не ломали верстку */
-}
 
-.blog-post a {
-  color: #f4e5c2;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(244, 229, 194, 0.3);
-  transition: all 0.2s;
-}
 
-.blog-post a:hover {
-  color: #d4af37;
-  border-bottom-color: #d4af37;
-}
 
-blockquote.q {
-  border-left: 3px solid #d4af37;
-  padding-left: 1.5rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: #d4af37;
-}
 
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -135,15 +169,6 @@ img {
 
 
       
-
-
-
-
-
-      
-
-      
-
 
     
   <div class="blog-post">    
