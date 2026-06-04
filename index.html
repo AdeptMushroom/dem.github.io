@@ -4,148 +4,130 @@
       <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Мой блог</title>
-      <style>
+       <style>
     body {
-      background: linear-gradient(135deg, #e1f5fe, #9c7cff, #6a5acd, #e1f5fe); 
-      background-size: 400% 400%; 
-      animation: bodyBgShift 8s ease infinite; 
-      margin: 0; 
-      min-height: 100vh; 
-      overflow-x: hidden; 
-      font-family: system-ui, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f1419, #1a2332, #0f1419);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #e0e0e0;
+      overflow-x: hidden;
     }
 
-    @keyframes bodyBgShift { 
+    @keyframes gradientShift {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-         .heart { 
-      position: fixed;
-      top: -60px; 
-      animation: heartFall 6s linear infinite; 
-      opacity: 0.85; 
-      pointer-events: none; 
-      user-select: none; 
-      will-change: transform;
-      z-index: 1;
-    }
-    
-    @keyframes heartFall { 
-      to { transform: translateY(110vh) rotate(360deg); } 
-    }
-     .h1{left:10%; animation-duration:5s; animation-delay:0s; font-size:24px}
-    .h2{left:25%; animation-duration:7s; animation-delay:1.2s; font-size:18px}
-    .h3{left:40%; animation-duration:6s; animation-delay:0.5s; font-size:24px}
-    .h4{left:55%; animation-duration:8s; animation-delay:2s; font-size:30px}
-    .h5{left:70%; animation-duration:5.5s; animation-delay:0.8s; font-size:24px}
-    .h6{left:85%; animation-duration:6.8s; animation-delay:1.5s; font-size:22px}
-    .h7{left:5%; animation-duration:7.2s; animation-delay:2.5s; font-size:24px}
-    .h8{left:90%; animation-duration:5.3s; animation-delay:0.3s; font-size:26px}
 
-    .glow-text {
-      background: linear-gradient(90deg, #e1f5fe, #4fc3f7, #81d4fa, #b3e5fc, #e1f5fe);
-      background-size: 200% auto;
-      -webkit-background-clip: text; 
-      background-clip: text;
-      color: transparent;
-      animation: textGlowShift 4s linear infinite;
-      filter: drop-shadow(0 0 10px rgba(79, 195, 247, 0.55));
-      font-weight: 700; 
-      letter-spacing: 1px;
-      transform: none !important;
-      -webkit-transform: none !important;
-      position: relative;
-       z-index: 2;
-    }
-    
-    @keyframes textGlowShift { 
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
-    }
-    
-    @media (prefers-reduced-motion: reduce) {
-      body { animation: none !important; }
-      .heart { animation: none !important; opacity: 0.5; }
-      .glow-text { animation: none !important; }
-    }
-
-    /* Дополнительные стили для контента блога */
-    .blog-content {
+    .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 2rem;
-      position: relative;
-      z-index: 2;
     }
-         .blog-post {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      padding: 1.5rem;
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin: 0;
+      background: linear-gradient(90deg, #d4af37, #f4e5c2, #d4af37);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    .blog-post {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
       margin-bottom: 2rem;
-      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .blog-post:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
     }
 
     .blog-post h2 {
+      color: #d4af37;
+      font-size: 1.5rem;
       margin-top: 0;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      font-weight: 400;
+      letter-spacing: 1px;
     }
 
-    .blog-post p, .blog-post blockquote {
-      color: rgba(255, 255, 255, 0.95);
-      line-height: 1.6;
+    .blog-post p {
+      line-height: 1.7;
+      color: #b0b0b0;
+      margin: 1rem 0;
     }
-        
+
     .blog-post a {
-      color: #b3e5fc;
+      color: #f4e5c2;
       text-decoration: none;
-      border-bottom: 1px solid rgba(179, 229, 252, 0.5);
+      border-bottom: 1px solid rgba(244, 229, 194, 0.3);
       transition: all 0.2s;
     }
 
     .blog-post a:hover {
-      color: #fff;
-      border-bottom-color: #fff;
+      color: #d4af37;
+      border-bottom-color: #d4af37;
     }
 
     blockquote.q {
-      border-left: 4px solid #8B0000;
-      padding-left: 1rem;
-      margin: 1rem 0;
+      border-left: 3px solid #d4af37;
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
       font-style: italic;
-      color: #ffd700;
+      color: #d4af37;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1rem 0;
     }
   </style>
 </head>
-    <body>
-  <!-- Сердечки -->
-  <span class="heart h1">❤️‍🔥</span>
-  <span class="heart h2">❤️‍🔥</span>
-  <span class="heart h3">❤️‍🔥</span>
-  <span class="heart h4">❤️‍🔥</span>
-  <span class="heart h5">❤️‍🔥</span>
-  <span class="heart h6">❤️‍🔥</span>
-  <span class="heart h7">❤️‍🔥</span>
-  <span class="heart h8">❤️‍🔥</span>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Мой блог</h1>
+    </div>
 
-  
+   
+      
+
+
+
+
+
+
+
+
+
+      
+
+
     
-
-
-
-
-
-
-
-
-
-      
-
-
-      
   <div class="blog-post">    
   <h2> 1 сентября , 2025</h2>
       <blockquote class=“q”>Путешествие в тысячу миль начинается с одного шага (Лао Цзы) </blockquote>
